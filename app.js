@@ -10,6 +10,9 @@ const PORT = 3000;
 app.set('views', path.join(import.meta.dirname, 'src/views'));
 app.set('view engine', 'ejs');
 
+// MIDDLEWARE
+app.use(express.urlencoded({ extended: true }));
+
 app.use('/', indexRouter);
 
 app.listen(PORT, (err) => {
