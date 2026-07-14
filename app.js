@@ -3,6 +3,7 @@ import path from 'node:path';
 
 import indexRouter from './src/routes/indexRouter.js';
 import newMessageRouter from './src/routes/newMessageRouter.js';
+import serveFavicon from 'serve-favicon';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -13,6 +14,9 @@ app.set('view engine', 'ejs');
 
 // MIDDLEWARE
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  serveFavicon(path.join(import.meta.dirname, 'src', 'public', 'favicon.ico')),
+);
 
 app.use('/new', newMessageRouter);
 app.use('/', indexRouter);
