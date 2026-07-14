@@ -8,9 +8,12 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:messageId', (req, res) => {
-  const message = messages.find((m) => m.id === req.params.messageId);
+  const messageId = req.params.messageId;
+  const message = messages.find((m) => m.id === messageId);
   if (!message) {
-    console.error('Could not find message. Redirect back to home');
+    console.error(
+      `Could not find message messageId: ${messageId}. Redirect back to home`,
+    );
     res.redirect('/');
     return;
   }
