@@ -5,7 +5,7 @@ import indexRouter from './src/routes/indexRouter.js';
 import newMessageRouter from './src/routes/newMessageRouter.js';
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3001;
 
 // Set up to render in ejs
 app.set('views', path.join(import.meta.dirname, 'src/views'));
