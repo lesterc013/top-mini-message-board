@@ -9,7 +9,10 @@
   <!-- Given messages array, display each of the properites -->
   <% messages.forEach((message) => { %>
     <%- include('message', {message}) %>
+    <a href="/<%= message.id %>">Go to message</a>
   <% }) %>
-  <a href="/new">Add New Message</a>
+  <div>
+    <a href="/new">Add New Message</a>
+  </div>
 </body>
 </html>
