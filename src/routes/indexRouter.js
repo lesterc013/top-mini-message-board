@@ -1,19 +1,5 @@
 import { Router } from 'express';
-
-const messages = [
-  {
-    id: 1,
-    text: 'Hi there!',
-    user: 'Amando',
-    added: new Date(),
-  },
-  {
-    id: 2,
-    text: 'Hello World!',
-    user: 'Charles',
-    added: new Date(),
-  },
-];
+import { messages } from '../db/db.js';
 
 const router = Router();
 
@@ -22,7 +8,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:messageId', (req, res) => {
-  const message = messages.find((m) => m.id === parseInt(req.params.messageId));
+  const message = messages.find((m) => m.id === req.params.messageId);
   if (!message) {
     console.error('Could not find message. Redirect back to home');
     res.redirect('/');
@@ -30,21 +16,6 @@ router.get('/:messageId', (req, res) => {
   }
 
   res.render('messagePage', { message });
-});
-
-router.get('/new', (req, res) => {
-  res.render('form');
-});
-
-router.post('/new', (req, res) => {
-  messages.push({
-    id: crypto.randomUUID(),
-    text: req.body.text,
-    user: req.body.user,
-    added: new Date(),
-  });
-
-  res.redirect('/');
 });
 
 export default router;

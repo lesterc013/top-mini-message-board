@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'node:path';
 
 import indexRouter from './src/routes/indexRouter.js';
+import newMessageRouter from './src/routes/newMessageRouter.js';
 
 const app = express();
 const PORT = 3000;
@@ -13,6 +14,7 @@ app.set('view engine', 'ejs');
 // MIDDLEWARE
 app.use(express.urlencoded({ extended: true }));
 
+app.use('/new', newMessageRouter);
 app.use('/', indexRouter);
 
 app.listen(PORT, (err) => {
